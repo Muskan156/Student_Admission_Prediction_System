@@ -16,6 +16,11 @@
     <header>
         <div class="container">
             <div class="left">College Predictor</div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <nav>
                 <ul class="nav-links">
                     <li><a href="{{ url_for('home') }}">Home</a></li>
@@ -58,6 +63,16 @@
     <footer>
         <p>&copy; 2025 College Predictor | Designed for Smart Admissions</p>
     </footer>
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('nav ul');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('mobile-nav');
+            navLinks.classList.toggle('active');
+        });
+    </script>
+
 </body>
 
 </html>

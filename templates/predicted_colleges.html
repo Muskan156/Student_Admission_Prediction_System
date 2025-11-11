@@ -12,6 +12,11 @@
     <header>
         <div class="container">
             <div class="left">College Predictor</div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <nav>
                 <ul>
                     <li><a href="/">Home</a></li>
@@ -28,13 +33,14 @@
             {% endif %}
         </div>
     </header>
-<section class="results-container">
+    <section class="results-container">
         <h2>Your Predicted Colleges</h2>
 
         {% if predictions and predictions|length > 0 %}
-        <p class="sub-text">Based on your percentile and category, here are the colleges where you have good chances of admission:</p>
+        <p class="sub-text">Based on your percentile and category, here are the colleges where you have good chances of
+            admission:</p>
 
-            <form action="{{ url_for('save_colleges') }}" method="POST">
+        <form action="{{ url_for('save_colleges') }}" method="POST">
             <input type="hidden" id="student_id" value="1">
             <table class="college-table">
                 <thead>
@@ -99,18 +105,25 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ student_id, colleges: selected })
             })
-            .then(res => res.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    alert("Colleges saved to your list!");
-                } else {
-                    alert("Error saving your colleges.");
-                }
-            })
-            .catch(err => {
-                console.error(err);
-                alert("Something went wrong while saving.");
-            });
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        alert("Colleges saved to your list!");
+                    } else {
+                        alert("Error saving your colleges.");
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    alert("Something went wrong while saving.");
+                });
+        });
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('nav ul');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('mobile-nav');
+            navLinks.classList.toggle('active');
         });
     </script>
 </body>

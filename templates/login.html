@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | College Predictor</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+
 <body>
     <header>
         <div class="container">
             <div class="left">College Predictor</div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <nav>
                 <ul>
                     <li><a href="{{ url_for('home') }}">Home</a></li>
@@ -25,12 +32,12 @@
         <div class="auth-box">
             <h2>Login</h2>
 
-             {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                    {% for category, message in messages %}
-                        <div class="flash {{ category }}">{{ message }}</div>
-                    {% endfor %}
-                {% endif %}
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+            {% endif %}
             {% endwith %}
 
             <form action="{{ url_for('login') }}" method="POST">
@@ -52,6 +59,16 @@
     <footer>
         <p>&copy; 2025 College Predictor | Designed for Smart Admissions</p>
     </footer>
-</body>
-</html>
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('nav ul');
 
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('mobile-nav');
+            navLinks.classList.toggle('active');
+        });
+    </script>
+
+</body>
+
+</html>

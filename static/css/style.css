@@ -1,734 +1,294 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap');
 
+/* ==========================================================
+   Global Styles — Student Admission Prediction System
+   Fully Responsive + Mobile Navbar + Clean UI
+========================================================== */
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #e3f2fd, #f8f9fa);
+  font-family: "Poppins", sans-serif;
+  background-color: #fff;
+  color: #222;
+  line-height: 1.6;
 }
 
+/* ==========================================================
+   Header & Navigation
+========================================================== */
 header {
-    background: #0d47a1;
-    color: white;
-    padding: 15px 0;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: #0d47a1;
+  color: white;
+  padding: 12px 18px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-header>.container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
 }
 
-.left {
-    font-weight: 700;
-    font-size: 1.5em;
+header .left {
+  font-size: 1.4rem;
+  font-weight: 600;
 }
 
-nav>ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    margin: 0;
-    padding: 0;
-    flex-wrap: wrap;
+/* Navbar */
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
 }
 
-nav>ul>li>a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-}
-nav>ul>li>a:hover {
-  text-decoration: underline;
-}
-.buttonLogin {
-    background-color: white;
-    border: 0.5px solid #dbdada;
-    color: black;
-    padding: 10px;
-    width: 80px;
-    text-align: center;
-    text-decoration: none;
-    /* font-size: 16px; */
-    cursor: pointer;
-    border-radius: 8px;
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s;
 }
 
-.buttonLogin:hover {
-    background-color: #dbdada00;
-    color: white;
-    border: 2px solid white;
+nav ul li a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.buttonLogin,
+.buttonSignUp {
+  background-color: #fff;
+  color: #0d47a1;
+  padding: 7px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  margin-left: 6px;
+  font-weight: 600;
 }
 
 .buttonSignUp {
-    background-color: #5d76a900;
-    border: 2px solid white;
-    color: white;
-    padding: 10px;
-    width: 80px;
-    text-align: center;
-    text-decoration: none;
-    /* font-size: 16px; */
-    cursor: pointer;
-    border-radius: 8px;
-}
-
-.buttonSignUp:hover {
-    color: black;
-    background-color: white;
-}
-
-footer {
-    background-color: #0d47a1;
-    color: white;
-    text-align: center;
-    padding: 15px 0;
-    bottom: 0;
-    width: 100%;
-}
-
-footer p {
-    margin: 0;
-    font-size: 14px;
-}
-
-/*=======================================index-style-start========================================*/
-.poster {
-    height: 100vh;
-    background: url('../assests/background1.jpg') no-repeat center center/cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-    color: #fff;
-    position: relative;
-}
-
-.poster::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 0;
-}
-
-.poster>h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    z-index: 1;
-    position: relative;
-}
-
-.poster>p {
-    font-size: 1.2rem;
-    z-index: 1;
-    position: relative;
-}
-
-.p1 {
-    text-align: center;
-    margin: 20px;
-    margin-top: 80px;
-    animation-name: slideUp;
-    animation-duration: 4s;
-    animation-timing-function: ease-in;
-}
-
-.howItWorks {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.howItWorks>.box {
-    display: block;
-    text-align: justify;
-    /* border: 2px solid black; */
-    padding: 30px;
-    margin: 20px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    animation-name: slideUp;
-    animation-duration: 4s;
-    animation-timing-function: ease-in;
-}
-
-.howItWorks>.box>h3 {
-    margin-bottom: 10px;
-}
-
-@keyframes slideUp {
-
-    0%,
-    50% {
-        transform: translateY(100%);
-        opacity: 0;
-    }
-
-    60%,
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-
-    }
-}
-
-hr {
-    margin-top: 80px;
-}
-
-/*=======================================index-style-start========================================*/
-/*======================================predictor-style-start=====================================*/
-.predictor-container {
-    max-width: 600px;
-    background: #fff;
-    margin: 60px auto;
-    padding: 30px 40px;
-    border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-    text-align: center;
-    color: #0d47a1;
-    font-weight: 600;
-    margin-bottom: 25px;
-}
-
-form>label {
-    font-weight: 500;
-    display: block;
-    margin-top: 15px;
-}
-
-form input,
-form select {
-    width: 100%;
-    padding: 10px;
-    margin-top: 8px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 14px;
-}
-
-.btn-submit {
-    display: block;
-    width: 100%;
-    margin-top: 25px;
-    background-color: #0d47a1;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-
-.btn-submit:hover {
-    background-color: #1565c0;
-}
-
-/*======================================predictor-style-end=====================================*/
-/*====================================error-message-style-start=================================*/
-.flash {
-    margin: 15px auto;
-    width: 80%;
-    padding: 12px;
-    border-radius: 8px;
-    text-align: center;
-}
-
-.flash.error {
-    background-color: #ffe5e5;
-    color: #c00;
-    border: 1px solid #c00;
-}
-
-.flash.success {
-    background-color: #e5ffe5;
-    color: #080;
-    border: 1px solid #080;
-}
-
-.row-odd {
-    background-color: #f2f2f2;
-}
-
-.row-even {
-    background-color: #ffffff;
-}
-
-/*====================================error-message-style-end=================================*/
-/*====================================predicted-colleges-style-start =============================*/
-.results-container {
-    max-width: 90%;
-    margin: 60px auto;
-    background: #fff;
-    padding: 30px 40px;
-    border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-}
-
-.results-container>h2 {
-    text-align: center;
-    color: #0d47a1;
-    margin-bottom: 15px;
-}
-
-.sub-text {
-    text-align: center;
-    color: #555;
-    margin-bottom: 25px;
-}
-
-.table-wrapper {
-    overflow-x: auto;
-}
-
-.college-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-.college-table th,
-.college-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-
-.college-table>th {
-    background-color: #007bff;
-    color: white;
-}
-
-.college-table tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-.college-table>tr:hover {
-    background-color: #ddd;
-}
-
-.btn-submit,
-.btn-back {
-    display: inline-block;
-    margin: 10px 5px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border-radius: 6px;
-    border: none;
-    text-decoration: none;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.btn-submit:hover {
-    background-color: #0056b3;
-}
-
-.btn-back {
-    background-color: #007bff;
-}
-
-.btn-back:hover {
-    background-color: #0056b3;
-}
-
-/*====================================predicted-colleges-style-end=============================*/
-/*============================================login-register-style-start================================*/
-.auth-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80vh;
-    background: linear-gradient(135deg, #e3f2fd, #f8f9fa);
-}
-
-.auth-box {
-    width: 350px;
-    background: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-    padding: 30px 35px;
-    text-align: center;
-    animation: fadeIn 0.5s ease-in-out;
-}
-
-.auth-box>h2 {
-    color: #0d47a1;
-    margin-bottom: 20px;
-    font-weight: 600;
-}
-
-.auth-box>form>label {
-    display: block;
-    text-align: left;
-    font-weight: 500;
-    margin-top: 12px;
-}
-
-.auth-box>form>input {
-    width: 100%;
-    padding: 10px;
-    margin-top: 6px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 14px;
-}
-
-.auth-box>.btn-submit {
-    width: 100%;
-    background-color: #0d47a1;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 12px;
-    margin-top: 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-
-.auth-box .btn-submit:hover> {
-    background-color: #1565c0;
-}
-
-.redirect-text {
-    margin-top: 15px;
-    font-size: 14px;
-}
-
-.redirect-text>a {
-    color: #0d47a1;
-    font-weight: 500;
-    text-decoration: none;
-}
-
-.redirect-text>a:hover {
-    text-decoration: underline;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(15px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/*============================================login-register-style-end================================*/
-/*=============================================admission-info-style-strat=============================*/
-.eligibilityCriteria {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.eligibilityCriteria>.box {
-    display: block;
-    text-align: justify;
-    background-color: white;
-    /* border: 2px solid black; */
-    padding: 30px;
-    margin: 20px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    animation-name: slideUp;
-    animation-duration: 4s;
-    animation-timing-function: ease-in;
-}
-
-.eligibilityCriteria>.box>h3 {
-    margin-bottom: 10px;
-}
-
-@keyframes slideUp {
-
-    0%,
-    50% {
-        transform: translateY(100%);
-        opacity: 0;
-    }
-
-    60%,
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-
-    }
-}
-
-.timeline-container {
-    max-width: 900px;
-    margin: 40px auto;
-    background: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.timeline-item {
-    border-left: 4px solid #007bff;
-    padding-left: 15px;
-    margin: 15px 0;
-}
-
-.timeline-item>h4 {
-    margin: 0;
-    color: #007bff;
-}
-
-.timeline-item>span {
-    font-size: 0.9em;
-    color: #555;
-}
-
-.requiredDocuments {
-    border-collapse: collapse;
-    width: 90%;
-    margin: 30px auto;
-    animation-name: slideUpTable;
-}
-
-.admissionTimeline {
-    border-collapse: collapse;
-    width: 90%;
-    margin: 30px auto;
-    animation-name: slideUpTable;
-}
-
-@keyframes slideUpTable {
-
-    0%,
-    50% {
-        transform: translateY(100%);
-        opacity: 0;
-    }
-
-    60%,
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-
-    }
-}
-
-.requiredDocuments,
-th,
-td {
-    border: 1px solid #ddd;
-}
-
-.admissionTimeline,
-th,
-td {
-    border: 1px solid #ddd;
-}
-
-th,
-td {
-    padding: 10px;
-    text-align: left;
-}
-
-th {
-    background: #007bff;
-    color: white;
-}
-
-/*=====================================================admission-info-style-end===========================*/
-/*=============================================admin-login-style-start=================================*/
-.admin-login-box {
-    background: white;
-    padding: 30px 40px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    width: 350px;
-    text-align: center;
-}
-
-.admin-login-box>h2 {
-    color: #0d47a1;
-    margin-bottom: 20px;
-}
-
-.btn-login {
-    background: #0d47a1;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 8px;
-    width: 100%;
-    margin-top: 10px;
-    cursor: pointer;
-}
-
-.btn-login:hover {
-    background: #1565c0;
-}
-
-/*=============================================admin-login-style-end=================================*/
-/*============================================admin-admission-timeline-style-start============================*/
+  background-color: #fbc02d;
+  color: #000;
+}
+
+/* ==========================================================
+   Hamburger Menu
+========================================================== */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  background-color: white;
+  height: 3px;
+  border-radius: 2px;
+}
+
+nav ul.mobile-nav {
+  display: none;
+  flex-direction: column;
+  background-color: #0d47a1;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 15px 0;
+}
+
+nav ul.mobile-nav.active {
+  display: flex;
+}
+
+/* ==========================================================
+   Containers & Sections
+========================================================== */
+.container,
+.results-container,
+.predictor-container,
 .admin-container {
-    width: 90%;
-    margin: 50px auto;
-    background: #fff;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 1100px;
+  margin: 25px auto;
 }
 
-.form-card {
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 25px;
+/* ==========================================================
+   Forms
+========================================================== */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.btn-small {
-    background-color: #0d47a1;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
+label {
+  font-weight: 600;
+}
+
+input,
+select,
+textarea {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+button,
+.btn-submit,
+.btn-small,
+.btn-back {
+  background-color: #0d47a1;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+button:hover,
+.btn-submit:hover {
+  background-color: #1565c0;
 }
 
 .btn-small.delete {
-    background-color: #c62828;
+  background-color: #d32f2f;
 }
 
-.btn-small:hover {
-    opacity: 0.9;
+/* ==========================================================
+   Tables
+========================================================== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  font-size: 0.9rem;
+  border: 1px solid #000;
 }
 
-/*============================================admin-admission-timeline-style-end============================*/
-
-
-
-@media (max-width: 1024px) {
-  header .container {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  nav ul {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-  }
-
-  .college-table th,
-  .college-table td {
-    padding: 8px;
-    font-size: 14px;
-  }
-
-  .eligibilityCriteria {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .eligibilityCriteria .box {
-    width: 80%;
-    margin-bottom: 15px;
-  }
-
-  .auth-box {
-    width: 70%;
-  }
-
-  .btn-submit,
-  .btn-back {
-    width: 100%;
-    text-align: center;
-  }
+th,
+td {
+  border: 1px solid #000;
+  padding: 10px;
+  text-align: center;
 }
 
+th {
+  background-color: #f5f5f5;
+}
 
+tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+/* ==========================================================
+   Flash messages
+========================================================== */
+.flash {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.flash.success {
+  background-color: #c8e6c9;
+  color: #256029;
+}
+
+.flash.error {
+  background-color: #ffcdd2;
+  color: #b71c1c;
+}
+
+/* ==========================================================
+   Auth Boxes (Login, Register)
+========================================================== */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 15px;
+}
+
+.auth-box {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 25px;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================================
+   Footer
+========================================================== */
+footer {
+  background: #0d47a1;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  font-size: 0.9rem;
+  margin-top: 40px;
+}
+
+/* ==========================================================
+   Responsive Design
+========================================================== */
 @media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    padding: 10px;
+  .hamburger {
+    display: flex;
   }
 
   nav ul {
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
+    display: none;
   }
 
-  .college-table {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
+  nav ul.mobile-nav.active {
+    display: flex;
   }
 
-  .college-table th,
-  .college-table td {
-    font-size: 13px;
+  table {
+    font-size: 0.85rem;
+  }
+
+  th,
+  td {
     padding: 6px;
   }
+}
 
-  .eligibilityCriteria .box {
-    width: 100%;
+@media (max-width: 480px) {
+  header .left {
+    font-size: 1.1rem;
+  }
+
+  .buttonLogin,
+  .buttonSignUp {
+    padding: 6px 10px;
+    font-size: 0.8rem;
   }
 
   .auth-box {
-    width: 90%;
-    padding: 20px;
-  }
-
-  h2 {
-    font-size: 1.4rem;
-  }
-
-  footer p {
-    font-size: 13px;
-  }
-
-  .buttonLogin, .buttonSignUp {
-    padding: 6px 10px;
-    font-size: 13px;
-  }
-}
-
-
-@media (max-width: 480px) {
-  .college-table th, .college-table td {
-    font-size: 12px;
-  }
-
-  header .left {
-    font-size: 1.2rem;
-  }
-
-  .auth-box, .eligibilityCriteria .box {
     width: 95%;
   }
 
-  .btn-submit, .btn-back {
-    font-size: 14px;
-    padding: 10px;
+  footer {
+    font-size: 0.8rem;
   }
 }
