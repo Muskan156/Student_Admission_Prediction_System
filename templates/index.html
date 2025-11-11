@@ -14,31 +14,44 @@
 
 <body>
     <header>
-        <div class="container">
-            <div class="left">College Predictor</div>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="{{ url_for('home') }}">Home</a></li>
-                    <li><a href="{{ url_for('predictor') }}">Predictor</a></li>
-                    <li><a href="{{ url_for('admission_info') }}">Admission Guide</a></li>
-                    <li><a href="{{ url_for('my_list') }}">My List</a></li>
-                </ul>
-            </nav>
-            <!-- <a href="{{ url_for('login') }}" class="buttonLogin">Login</a>
-            <a href="{{ url_for('register') }}" class="buttonSignUp">Sign Up</a> -->
-            {% if 'student_id' in session %}
-            <a href="{{ url_for('logout') }}" class="buttonSignUp">Logout</a>
-            {% else %}
-            <a href="{{ url_for('login') }}" class="buttonLogin">Login</a>
-            <a href="{{ url_for('register') }}" class="buttonSignUp">Sign Up</a>
-            {% endif %}
-        </div>
-    </header>
+  <div class="container">
+    <div class="left">College Predictor</div>
+    <button class="menu-toggle" id="menuToggle">Menu</button>
+    <!-- <nav id="navMenu">
+      <ul>
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('predictor') }}">Predictor</a></li>
+        <li><a href="{{ url_for('admission_info') }}">Admission Guide</a></li>
+        <li><a href="{{ url_for('my_list') }}">My List</a></li>
+      </ul>
+    </nav> -->
+    <nav id="navMenu">
+  <ul>
+    <li><a href="{{ url_for('home') }}">Home</a></li>
+    <li><a href="{{ url_for('predictor') }}">Predictor</a></li>
+    <li><a href="{{ url_for('admission_info') }}">Admission Guide</a></li>
+    <li><a href="{{ url_for('my_list') }}">My List</a></li>
+
+    <!-- Auth links inside the dropdown (mobile only; CSS will hide on desktop) -->
+    {% if 'student_id' in session %}
+      <li class="mobile-auth"><a href="{{ url_for('logout') }}">Logout</a></li>
+    {% else %}
+      <li class="mobile-auth"><a href="{{ url_for('login') }}">Login</a></li>
+      <li class="mobile-auth"><a href="{{ url_for('register') }}">Sign Up</a></li>
+    {% endif %}
+  </ul>
+</nav>
+
+    {% if 'student_id' in session %}
+        <a href="{{ url_for('logout') }}" class="buttonSignUp">Logout</a>
+    {% else %}
+        <a href="{{ url_for('login') }}" class="buttonLogin">Login</a>
+        <a href="{{ url_for('register') }}" class="buttonSignUp">Sign Up</a>
+    {% endif %}
+  </div>
+</header>
+
+
     <section class="poster">
         <h1>Find Your Dream College</h1>
         <p>Your percentile is just a number; your choices define your future.</p>
@@ -63,16 +76,22 @@
     <footer>
         <p>&copy; 2025 College Predictor | Designed for Smart Admissions</p>
     </footer>
-    <script>
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('nav ul');
+  <script>
+  const menuToggle = document.querySelector(".menu-toggle");
+  const navMenu = document.querySelector("nav ul");
 
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('mobile-nav');
-            navLinks.classList.toggle('active');
-        });
-    </script>
+  menuToggle.addEventListener("click", (e) => {
+    e.stopPropagation();
+    navMenu.classList.toggle("active");
+  });
 
+  // Close menu when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+      navMenu.classList.remove("active");
+    }
+  });
+</script>
 </body>
 
 </html>
