@@ -9,7 +9,10 @@ from sklearn.pipeline import Pipeline
 import joblib
 
 #Load and Preprocess Data
-data = pd.read_csv(r"C:\StudentAdmissionPrediction\dataset\dataset.csv")
+import os
+data_path = os.path.join(os.path.dirname(__file__), "..", "dataset", "dataset.csv")
+data = pd.read_csv(data_path)
+
 
 numeric_cols = ['CAP1', 'CAP2', 'CAP3']
 categorical_cols = ['Institute_Code', 'Institute', 'Department', 'Category', 'Year']
