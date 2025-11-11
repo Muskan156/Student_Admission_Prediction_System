@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | College Statistics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="left">Admin Dashboard</div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('admission_timeline') }}">Timeline</a></li>
+                <li><a href="{{ url_for('admin_students') }}">Students</a></li>
+                <li><a href="{{ url_for('admin_statistics') }}">Statistics</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="admin-container">
+    <h2>Student Selections Summary</h2>
+
+    {% if summary %}
+    <table class="college-table">
+        <thead>
+            <tr>
+                <th>Institute</th>
+                <th>Department</th>
+                <th>Total Students Selected</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in summary %}
+            <tr>
+                <td>{{ row.institute_name }}</td>
+                <td>{{ row.department }}</td>
+                <td>{{ row.total_students }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p style="text-align:center;">No data found yet.</p>
+    {% endif %}
+</section>
+
+<footer>
+    <p>&copy; 2025 College Predictor | Admin Panel</p>
+</footer>
+</body>
+</html>

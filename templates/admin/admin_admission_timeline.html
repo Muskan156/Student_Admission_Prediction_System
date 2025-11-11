@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Admission Timeline</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <div class="left">Admin Dashboard</div>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('admission_timeline') }}">Timeline</a></li>
+        <li><a href="{{ url_for('admin_students') }}">Students</a></li>
+        <li><a href="{{ url_for('admin_statistics') }}">Statistics</a></li>
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="admin-container">
+  <h2>Admission Timeline Management</h2>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <div class="form-card">
+    <h3>Add New Process</h3>
+    <form action="{{ url_for('add_timeline') }}" method="POST">
+      <label>Process Name:</label>
+      <input type="text" name="process_name" required>
+
+      <label>Start Date:</label>
+      <input type="date" name="start_date" required>
+
+      <label>End Date:</label>
+      <input type="date" name="end_date" required>
+
+      <label>Description:</label>
+      <textarea name="description" rows="3"></textarea>
+
+      <button type="submit" class="btn-submit">Add Process</button>
+    </form>
+  </div>
+
+  <h3>Existing Timeline Records</h3>
+  <table class="college-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Process Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for t in timelines %}
+      <tr>
+        <form action="{{ url_for('edit_timeline', id=t.id) }}" method="POST">
+          <td>{{ t.id }}</td>
+          <td><input type="text" name="process_name" value="{{ t.process_name }}" required></td>
+          <td><input type="date" name="start_date" value="{{ t.start_date }}"></td>
+          <td><input type="date" name="end_date" value="{{ t.end_date }}"></td>
+          <td><input type="text" name="description" value="{{ t.description or '' }}"></td>
+          <td>
+            <button type="submit" class="btn-small">Save</button>
+        </form>
+            <form action="{{ url_for('delete_timeline', id=t.id) }}" method="POST" style="display:inline;">
+              <button type="submit" class="btn-small delete">Delete</button>
+            </form>
+          </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<footer>
+  <p>&copy; 2025 College Predictor | Admin Panel</p>
+</footer>
+</body>
+</html>
+
+

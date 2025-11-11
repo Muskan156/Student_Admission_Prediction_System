@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicted Colleges | College Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="left">College Predictor</div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/predictor">Predictor</a></li>
+                    <li><a href="/admission_info">Admission Guide</a></li>
+                    <li><a href="/my_list">My List</a></li>
+                </ul>
+            </nav>
+            {% if 'student_id' in session %}
+            <a href="{{ url_for('logout') }}" class="buttonSignUp">Logout</a>
+            {% else %}
+            <a href="{{ url_for('login') }}" class="buttonLogin">Login</a>
+            <a href="{{ url_for('register') }}" class="buttonSignUp">Sign Up</a>
+            {% endif %}
+        </div>
+    </header>
+<section class="results-container">
+        <h2>Your Predicted Colleges</h2>
+
+        {% if predictions and predictions|length > 0 %}
+        <p class="sub-text">Based on your percentile and category, here are the colleges where you have good chances of admission:</p>
+
+            <form action="{{ url_for('save_colleges') }}" method="POST">
+            <input type="hidden" id="student_id" value="1">
+            <table class="college-table">
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>Rank</th>
+                        <th>Institute</th>
+                        <th>Department</th>
+                        <th>Category</th>
+                        <th>CAP1 (%)</th>
+                        <th>CAP2 (%)</th>
+                        <th>CAP3 (%)</th>
+                        <th>Best Chance (%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in predictions %}
+                    <tr>
+                        <td><input type="checkbox" name="college" value='{"institute": "{{ row["Institute"] }}",
+             "department": "{{ row["Department"] }}",
+             "best_chance": "{{ row["Best Chance (%)"] }}"}'></td>
+                        <td>{{ row["College Rank"] }}</td>
+                        <td>{{ row["Institute"] }}</td>
+                        <td>{{ row["Department"] }}</td>
+                        <td>{{ row["Category"] }}</td>
+                        <td>{{ row["CAP1 (%)"] }}</td>
+                        <td>{{ row["CAP2 (%)"] }}</td>
+                        <td>{{ row["CAP3 (%)"] }}</td>
+                        <td>{{ row["Best Chance (%)"] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <button type="button" class="btn-submit" id="saveBtn">Save Selected Colleges</button>
+            <a href="{{ url_for('predictor') }}" class="btn-back">← Go Back</a>
+        </form>
+
+        {% else %}
+        <div class="flash error">
+            No colleges found for your profile. Try different inputs.
+        </div>
+        {% endif %}
+    </section>
+
+    <footer>
+        <p>&copy; 2025 College Predictor | Designed for Smart Admissions</p>
+    </footer>
+
+    <script>
+        document.getElementById('saveBtn').addEventListener('click', () => {
+            const selected = [...document.querySelectorAll('input[name="college"]:checked')].map(cb => JSON.parse(cb.value));
+            const student_id = document.getElementById('student_id').value;
+
+            if (selected.length === 0) {
+                alert("Please select at least one college.");
+                return;
+            }
+
+            fetch('/save_colleges', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ student_id, colleges: selected })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert("Colleges saved to your list!");
+                } else {
+                    alert("Error saving your colleges.");
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert("Something went wrong while saving.");
+            });
+        });
+    </script>
+</body>
+
+</html>

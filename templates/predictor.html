@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eligibility & Prediction | College Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="left">College Predictor</div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/predictor">Predictor</a></li>
+                    <li><a href="/admission_info">Admission Guide</a></li>
+                    <li><a href="/my_list">My List</a></li>
+                </ul>
+            </nav>
+            {% if 'student_id' in session %}
+            <a href="{{ url_for('logout') }}" class="buttonSignUp">Logout</a>
+            {% else %}
+            <a href="{{ url_for('login') }}" class="buttonLogin">Login</a>
+            <a href="{{ url_for('register') }}" class="buttonSignUp">Sign Up</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <section class="predictor-container">
+        <h2>Check Your Eligibility & Predict College</h2>
+        {% if message %}
+        <div class="flash {{ category }}">
+            {{ message }}
+        </div>
+        {% endif %}
+
+        <form action="{{ url_for('predictor') }}" method="POST">
+            <!-- <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required> -->
+
+            <label for="physics">Physics Marks:</label>
+            <input type="number" id="physics" name="physics" min="0" max="100" step="0.1" placeholder="Out of 100"
+                required>
+
+            <label for="chemistry">Chemistry Marks:</label>
+            <input type="number" id="chemistry" name="chemistry" min="0" max="100" step="0.1" placeholder="Out of 100"
+                required>
+
+            <label for="math">Math Marks:</label>
+            <input type="number" id="math" name="math" min="0" max="100" step="0.1" placeholder="Out of 100" required>
+
+            <label for="category">Select Category:</label>
+            <select id="category" name="category" required>
+                <option value="OPEN">OPEN</option>
+                <option value="OBC">OBC</option>
+                <option value="SC">SC</option>
+                <option value="ST">ST</option>
+                <option value="NT">NT</option>
+                <option value="EWS">EWS</option>
+                <option value="VJ">VJ</option>
+                <option value="SEBC">SEBC</option>
+                <option value="PWD">PWD</option>
+                <option value="DEF">DEF</option>
+            </select>
+
+            <label for="percentile">Entrance Percentile:</label>
+            <input type="number" id="percentile" name="percentile" placeholder="Enter your percentile (0–100)" min="0"
+                max="100" step="0.01" required>
+
+            <button type="submit" class="btn-submit">Check Eligibility</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 College Predictor | Designed for Smart Admissions</p>
+    </footer>
+</body>
+
+</html>

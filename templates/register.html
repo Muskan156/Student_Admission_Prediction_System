@@ -1,0 +1,129 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | College Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="left">College Predictor</div>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('predictor') }}">Predictor</a></li>
+                    <li><a href="{{ url_for('admission_info') }}">Admission Guide</a></li>
+                    <li><a href="{{ url_for('my_list') }}">My List</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="auth-container">
+        <div class="auth-box">
+            <h2>Register</h2>
+
+            {% if message %}
+            <div class="flash {{ category }}">{{ message }}</div>
+            {% endif %}
+
+            <form action="{{ url_for('register') }}" method="POST">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+                <button type="submit" class="btn-submit">Register</button>
+
+                <p class="redirect-text">
+                    Already have an account?
+                    <a href="{{ url_for('login') }}">Login</a>
+                </p>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 College Predictor | Designed for Smart Admissions</p>
+    </footer>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | College Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="left">College Predictor</div>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('predictor') }}">Predictor</a></li>
+                    <li><a href="{{ url_for('admission_info') }}">Admission Guide</a></li>
+                    <li><a href="{{ url_for('my_list') }}">My List</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="auth-container">
+        <div class="auth-box">
+            <h2>Create an Account</h2>
+
+            <form id="registerForm" action="{{ url_for('register') }}" method="POST" onsubmit="return validatePasswords()">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="Re-enter your password" required>
+
+                <p id="errorMsg" style="color:red; font-size:13px; display:none;">⚠️ Passwords do not match!</p>
+
+                <button type="submit" class="btn-submit">Register</button>
+
+                <p class="redirect-text">Already have an account? 
+                    <a href="{{ url_for('login') }}">Login</a>
+                </p>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 College Predictor | Designed for Smart Admissions</p>
+    </footer>
+
+    <script>
+        function validatePasswords() {
+            const pass = document.getElementById('password').value.trim();
+            const confirm = document.getElementById('confirm_password').value.trim();
+            const errorMsg = document.getElementById('errorMsg');
+
+            if (pass !== confirm) {
+                errorMsg.style.display = "block";
+                return false;
+            }
+            errorMsg.style.display = "none";
+            return true;
+        }
+    </script>
+</body>
+</html>
+

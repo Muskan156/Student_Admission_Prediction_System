@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | College Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="left">College Predictor</div>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('predictor') }}">Predictor</a></li>
+                    <li><a href="{{ url_for('admission_info') }}">Admission Guide</a></li>
+                    <li><a href="{{ url_for('my_list') }}">My List</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="auth-container">
+        <div class="auth-box">
+            <h2>Login</h2>
+
+             {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="flash {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <form action="{{ url_for('login') }}" method="POST">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+                <button type="submit" class="btn-submit">Login</button>
+
+                <p class="redirect-text">
+                    Don’t have an account? <a href="{{ url_for('register') }}">Register</a>
+                </p>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 College Predictor | Designed for Smart Admissions</p>
+    </footer>
+</body>
+</html>
+

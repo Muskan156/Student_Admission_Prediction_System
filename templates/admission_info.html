@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admission Info | College Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+<header>
+    <div class="container">
+        <div class="left">College Predictor</div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('predictor') }}">Predictor</a></li>
+                <li><a href="{{ url_for('admission_info') }}">Admission Guide</a></li>
+                <li><a href="{{ url_for('my_list') }}">My List</a></li>
+            </ul>
+        </nav>
+
+        {% if 'student_id' in session %}
+            <a href="{{ url_for('logout') }}" class="buttonSignUp">Logout</a>
+            {% else %}
+            <a href="{{ url_for('login') }}" class="buttonLogin">Login</a>
+            <a href="{{ url_for('register') }}" class="buttonSignUp">Sign Up</a>
+        {% endif %}
+    </div>
+</header>
+
+<section class="timeline-container">
+    <h2>Admission Timeline</h2>
+    {% if timeline %}
+        <table class="admissionTimeline">
+            <thead>
+                <tr>
+                    <th>Sr. No.</th>
+                    <th>Process Name</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for t in timeline %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ t.process_name }}</td>
+                    <td>{{ t.start_date }}</td>
+                    <td>{{ t.end_date }}</td>
+                    <td>{{ t.description or '-' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p style="text-align:center;">No timeline data available. Please check back later.</p>
+    {% endif %}
+</section>
+
+<section class="eligibility">
+    <h2 style="text-align:center;">Eligibility Criteria</h2>
+    <div class="eligibilityCriteria">
+        <div class="box">
+            <h3>General Category</h3>
+            <p>Must have passed HSC with Physics, Chemistry, and Mathematics with minimum 45% marks.</p>
+        </div>
+        <div class="box">
+            <h3>Reserved Category</h3>
+            <p>Minimum 40% marks in PCM. Should belong to Maharashtra State reservation category.</p>
+        </div>
+        <div class="box">
+            <h3>Entrance Exam</h3>
+            <p>Must appear for MHT-CET or JEE Main. Admission is based on percentile score.</p>
+        </div>
+    </div>
+</section>
+
+<section class="documents">
+    <h2 style="text-align:center;">List of Required Documents</h2>
+    <table class="requiredDocuments">
+        <thead>
+            <tr>
+                <th>Document</th>
+                <th>Purpose</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>MHT CET/ JEE Score Card</td><td>Admission Eligibility</td><td>All</td></tr>
+            <tr><td>10th Marksheet</td><td>Date of Birth Proof</td><td>All</td></tr>
+            <tr><td>12th Marksheet</td><td>Academic eligibility</td><td>All</td></tr>
+            <tr><td>Nationality Certificate</td><td>Proof of nationality</td><td>All</td></tr>
+            <tr><td>Domicile Certificate(MH)</td><td>Home State Quota</td><td>If Applicable</td></tr>
+            <tr><td>Caste Certificate</td><td>Reserved Categories</td><td>SC/ST/OBC</td></tr>
+            <tr><td>Caste Validity</td><td>Reserved Categories</td><td>SC/ST/OBC</td></tr>
+            <tr><td>Non-Creamy Layer</td><td>OBC</td><td>OBC</td></tr>
+            <tr><td>Income Certificate</td><td>EWS Eligibility</td><td>EWS/EBC</td></tr>
+            <tr><td>Aadhar/PAN Card</td><td>Identity Verification</td><td>All</td></tr>
+        </tbody>
+    </table>
+</section>
+
+<footer>
+    <p>&copy; 2025 College Predictor | Designed for Smart Admissions</p>
+</footer>
+</body>
+</html>

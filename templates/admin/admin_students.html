@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | Manage Students</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    .college-table input {
+  width: 95%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.admin-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <div class="left">Admin Dashboard</div>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('admission_timeline') }}">Timeline</a></li>
+        <li><a href="{{ url_for('admin_students') }}">Students</a></li>
+        <li><a href="{{ url_for('admin_statistics') }}">Statistics</a></li>
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="admin-container">
+  <h2>Student Data Management</h2>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  {% if students %}
+  <table class="college-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Category</th>
+        <th>PCM %</th>
+        <th>Percentile</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for s in students %}
+      <tr>
+        <form action="{{ url_for('edit_student', id=s.id) }}" method="POST">
+          <td>{{ s.id }}</td>
+          <td><input type="text" name="name" value="{{ s.name }}" required></td>
+          <td><input type="email" name="email" value="{{ s.email }}" required></td>
+          <td><input type="text" name="category" value="{{ s.category or '' }}"></td>
+          <td><input type="number" step="0.01" name="pcm_percentage" value="{{ s.pcm_percentage or '' }}"></td>
+          <td><input type="number" step="0.01" name="percentile" value="{{ s.percentile or '' }}"></td>
+          <td>
+            <button type="submit" class="btn-small">Save</button>
+        </form>
+            <form action="{{ url_for('delete_student', id=s.id) }}" method="POST" style="display:inline;">
+              <button type="submit" class="btn-small delete" onclick="return confirm('Are you sure you want to delete this student?');">Delete</button>
+            </form>
+          </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <p style="text-align:center;">No student records found.</p>
+  {% endif %}
+</section>
+
+<footer>
+  <p>&copy; 2025 College Predictor | Admin Panel</p>
+</footer>
+</body>
+</html>

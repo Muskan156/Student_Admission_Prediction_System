@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My College List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="left">College Predictor</div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/predictor">Predictor</a></li>
+                    <li><a href="/admission_info">Admission Guide</a></li>
+                    <li><a href="/my_list">My List</a></li>
+                </ul>
+            </nav>
+            {% if 'student_id' in session %}
+            <a href="{{ url_for('logout') }}" class="buttonSignUp">Logout</a>
+            {% else %}
+            <a href="{{ url_for('login') }}" class="buttonLogin">Login</a>
+            <a href="{{ url_for('register') }}" class="buttonSignUp">Sign Up</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <section class="results-container">
+        <h2>My Preferred Colleges</h2>
+
+        {% if colleges and colleges|length > 0 %}
+        <table class="college-table">
+            <thead>
+                <tr>
+                    <th>Institute</th>
+                    <th>Department</th>
+                    <th>Best Chance(%)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in colleges %}
+                <tr>
+                    <td>{{ c.institute_name }}</td>
+                    <td>{{ c.department or '-' }}</td>
+                    <td>{{ c.best_chance or '-' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% else %}
+        <div class="flash error">You haven’t saved any colleges yet.</div>
+        {% endif %}
+    </section>
+
+    <footer>
+        <p>&copy; 2025 College Predictor | Designed for Smart Admissions</p>
+    </footer>
+</body>
+
+</html>

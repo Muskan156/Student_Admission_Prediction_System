@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Home</title>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="left">College Predictor</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('predictor') }}">Predictor</a></li>
+                    <li><a href="{{ url_for('admission_info') }}">Admission Guide</a></li>
+                    <li><a href="{{ url_for('my_list') }}">My List</a></li>
+                </ul>
+            </nav>
+            <!-- <a href="{{ url_for('login') }}" class="buttonLogin">Login</a>
+            <a href="{{ url_for('register') }}" class="buttonSignUp">Sign Up</a> -->
+            {% if 'student_id' in session %}
+            <a href="{{ url_for('logout') }}" class="buttonSignUp">Logout</a>
+            {% else %}
+            <a href="{{ url_for('login') }}" class="buttonLogin">Login</a>
+            <a href="{{ url_for('register') }}" class="buttonSignUp">Sign Up</a>
+            {% endif %}
+        </div>
+    </header>
+    <section class="poster">
+        <h1>Find Your Dream College</h1>
+        <p>Your percentile is just a number; your choices define your future.</p>
+    </section>
+    <h2 class="p1">How It Works</h2>
+    <section class="howItWorks">
+        <div class="box">
+            <h3>Enter Your Details</h3>
+            <p>Provide your percentile and category to help the system understand your admission profile.</p>
+        </div>
+        <div class="box">
+            <h3>Get College Lists</h3>
+            <p>View a personalized list of colleges in the Sangli district where your chances of admission are highest.
+            </p>
+        </div>
+        <div class="box">
+            <h3>Make Informed Decision</h3>
+            <p>Explore department-wise admission probabilities and choose the college that best matches your goals.</p>
+        </div>
+    </section>
+    <hr>
+    <footer>
+        <p>&copy; 2025 College Predictor | Designed for Smart Admissions</p>
+    </footer>
+</body>
+
+</html>
