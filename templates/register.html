@@ -12,14 +12,29 @@
     <header>
         <div class="container">
             <div class="left">College Predictor</div>
-            <nav>
+            <button class="menu-toggle" id="menuToggle">Menu</button>
+            <nav id="navMenu">
                 <ul>
                     <li><a href="{{ url_for('home') }}">Home</a></li>
                     <li><a href="{{ url_for('predictor') }}">Predictor</a></li>
                     <li><a href="{{ url_for('admission_info') }}">Admission Guide</a></li>
                     <li><a href="{{ url_for('my_list') }}">My List</a></li>
+
+                    {% if 'student_id' in session %}
+                    <li class="mobile-auth"><a href="{{ url_for('logout') }}">Logout</a></li>
+                    {% else %}
+                    <li class="mobile-auth"><a href="{{ url_for('login') }}">Login</a></li>
+                    <li class="mobile-auth"><a href="{{ url_for('register') }}">Sign Up</a></li>
+                    {% endif %}
                 </ul>
             </nav>
+
+            {% if 'student_id' in session %}
+            <a href="{{ url_for('logout') }}" class="buttonSignUp">Logout</a>
+            {% else %}
+            <a href="{{ url_for('login') }}" class="buttonLogin">Login</a>
+            <a href="{{ url_for('register') }}" class="buttonSignUp">Sign Up</a>
+            {% endif %}
         </div>
     </header>
 
@@ -70,7 +85,19 @@
             errorMsg.style.display = "none";
             return true;
         }
-        
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navMenu = document.querySelector("nav ul");
+
+        menuToggle.addEventListener("click", (e) => {
+            e.stopPropagation();
+            navMenu.classList.toggle("active");
+        });
+
+        document.addEventListener("click", (e) => {
+            if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                navMenu.classList.remove("active");
+            }
+        });
     </script>
 </body>
 
