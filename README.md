@@ -62,10 +62,7 @@ The system also checks eligibility, provides a list of predicted colleges, and a
 
 ## 📊 Dataset
 
-The dataset used for this project was **manually created** by extracting  
-**CAP Round-wise cutoff data for three academic years — 2023, 2024, and 2025**  
-for **engineering colleges within Sangli district**, Maharashtra.
-This data was collected from the **official CET CELL (CAP Round) reports** and preprocessed into a clean CSV format used to train the prediction model.
+The dataset used for this project was **manually created** by extracting **CAP Round-wise cutoff data for three academic years — 2023, 2024, and 2025** for **engineering colleges within Sangli district**, Maharashtra.This data was collected from the **official CET CELL (CAP Round) reports** and preprocessed into a clean CSV format used to train the prediction model.
 Each record contains details such as:
 - **Institute Code**
 - **Institute Name**
