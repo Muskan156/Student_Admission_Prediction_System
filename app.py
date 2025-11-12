@@ -377,5 +377,17 @@ def admin_logout():
     flash('You have been logged out successfully.', 'success')
     return redirect(url_for('admin_login'))
 
+@app.route('/test_db')
+def test_db():
+    try:
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT NOW()")
+        result = cursor.fetchone()
+        cursor.close()
+        return f"✅ Database connected successfully! Server time: {result}"
+    except Exception as e:
+        return f"❌ Database connection failed: {str(e)}"
+
+
 if __name__ == "__main__":
     app.run(debug=True)
