@@ -62,10 +62,17 @@ The system also checks eligibility, provides a list of predicted colleges, and a
 
 ## 📊 Dataset
 
-- **Source:** Student academic dataset (custom / training data)
-- **Sample Features:**
-  - `Physics`, `Chemistry`, `Math`, `Percentile`, `Category`
-- **Label:** Predicted admission outcome and probability
+The dataset used for this project was **manually created** by extracting  
+**CAP Round-wise cutoff data for three academic years — 2023, 2024, and 2025**  
+for **engineering colleges within Sangli district**, Maharashtra.
+This data was collected from the **official CET CELL (CAP Round) reports** and preprocessed into a clean CSV format used to train the prediction model.
+Each record contains details such as:
+- **Institute Code**
+- **Institute Name**
+- **Department / Branch**
+- **Category (OPEN, OBC, SC, ST, EWS, etc.)**
+- **Academic Year**
+- **CAP Round 1 / 2 / 3**
 
 ---
 
@@ -99,6 +106,7 @@ Visit 👉 http://127.0.0.1:5000
 ---
 
 ## 🗂️ File Structure
+ ```bash
 .
 ├── app.py                     # Main Flask application
 ├── requirements.txt            # Dependencies
