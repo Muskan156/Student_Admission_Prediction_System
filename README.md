@@ -105,7 +105,7 @@ Visit 👉 http://127.0.0.1:5000
 ├── .env                        # Environment variables (local)
 │
 ├── ml_models/
-│   ├── train_model.py          # Train logistic regression model
+│   ├── train_model.py          # Train Random Forest Regressor model
 │   └── predict_model.py        # Predict admission outcomes
 │
 ├── templates/
