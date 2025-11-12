@@ -10,12 +10,6 @@ The system also checks eligibility, provides a list of predicted colleges, and a
 
 ---
 
-## 🔗 Live Demo
-
-▶️ [Try the App on Render](https://student-admission-prediction-system-1.onrender.com/)
-
----
-
 ## 📌 Features
 
 - **User Module**
