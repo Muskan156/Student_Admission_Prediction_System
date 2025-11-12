@@ -21,7 +21,7 @@ The system also checks eligibility, provides a list of predicted colleges, and a
 - **User Module**
   - Register, login, and manage student profiles  
   - Check eligibility and predict admission chances  
-  - Save and download preferred college lists (PDF format)
+  - Explore Admission Information (Timeline, Required Documents, Eligibility Criteria)
 
 - **Admin Module**
   - Manage admission timelines and view student statistics  
